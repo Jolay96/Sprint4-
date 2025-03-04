@@ -7,7 +7,7 @@ import plotly.express as px
 st.header("Market of Vehicles in the US")
 st.write("FIlter the data below to see at what price are cars being sold")
 
-df = pd.read_csv("../vehicles_us.csv")
+df = pd.read_csv("vehicles_us.csv")
 print(df.isnull().sum())
 df["model_year"].fillna(df["model_year"].median(), inplace=True)
 df["odometer"].fillna(df["odometer"].median(), inplace=True)
