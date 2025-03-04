@@ -21,20 +21,20 @@ st.write("#####" " Lets analyze what influences price the most. We will check ho
 filtered_df = df[df['price'] <= 60000]
 
 # Create histogram
-fig = px.histogram(filtered_df, x="price", nbins=25, title="Histogram of Car Prices",
+fig1 = px.histogram(filtered_df, x="price", nbins=25, title="Histogram of Car Prices",
                    labels={"price": "Price ($)"}, color_discrete_sequence=["blue"])
 
 # Update layout for better readability
-fig.update_layout(xaxis_title="Price ($)", yaxis_title="Frequency", 
+fig1.update_layout(xaxis_title="Price ($)", yaxis_title="Frequency", 
                   bargap=0.05, template="plotly_white")
 
 # Show plot
-fig.show()  
+st.plotly_chart(fig1)
 
 df['condition']= df["condition"].astype("category")
 
 # Scatter plot of odometer vs price
-fig = px.scatter(df, 
+fig2 = px.scatter(df, 
                  x='odometer', 
                  y='price', 
                  color='condition', 
@@ -45,9 +45,9 @@ fig = px.scatter(df,
                  hover_data=df.columns)  # Adds more details on hover
 
 # Show plot
-fig.show()
+st.plotly_chart(fig2)
 # box plot condition vs price 
-fig = px.box(df, 
+fig3 = px.box(df, 
              x="condition", 
              y="price", 
              color="condition", 
@@ -56,4 +56,4 @@ fig = px.box(df,
              boxmode="group")  # Groups different conditions
 
 # Show plot
-fig.show()
+st.plotly_chart(fig3)
